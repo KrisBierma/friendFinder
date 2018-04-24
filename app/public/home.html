@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+    <title>Friend Finder</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Friend Finder</h1>
+            <hr class="my-4">
+            <p class="lead">Answer a few basic questions.<br>Then find the friend with the greatest compatibility!</p>
+            <a class="btn btn-primary btn-lg" href="/survey" role="button">Go to Survey</a>
+        </div>
+
+        <div class="footer"><a href="#">API Friends List</a> | <a href="https://github.com/KrisBierma/friendFinder">GitHub Repo</a></div>
+    </div>
+
+
+<!-- <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script> -->
+<!-- <script src="../data/friends.js"></script> -->
+
+<script type="textaript">
+    var currentUser={};
+
+    $("form").submit(function(event){
+        event.preventDefault();
+        currentUser={}; //starts new array
+        currentUser.name = $("#name");
+        currentUser.photo = $("#pic");
+        for (var i=1; i<11; i++){
+            //convert results to array of numbers
+            currentUser.scores.push($("input[id='q"+i+"']:checked").val());  
+        }
+        console.log(currentUser);
+        <!-- allUsers.push(currentUser); -->
+        <!-- console.log(allUsers); -->
+        <!-- compareArrays(); -->
+    });
+
+    $.post("/api/friends", currentUser, function(data){
+
+    })
+
+    function compareArrays(){
+        //cycle through other arrays
+        //compare array to arrays of other users
+            //calculate totalDifference 
+            //hold current user in temp var until closer match is found
+    }
+
+    //display match with least amount of difference - show pic and name
+
+</script>
+
+</body>
