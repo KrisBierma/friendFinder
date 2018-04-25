@@ -1,5 +1,4 @@
 //for the data - what the user sees and can post
-
 var allUsers = require("../data/friends");
 
 module.exports = function(app){
@@ -8,39 +7,32 @@ module.exports = function(app){
     });
 
     app.post("/api/friends", function(req, res){
-        console.log(req.body);
-        console.log(req.body.scores);
-        console.log(req.body.scores[0]);
-        console.log(allUsers);
-        // console.log(allUsers[0]);
-        // console.log(res.json);
-        // function compareArrays(){
-            var currentUser = req.body;
-            console.log(currentUser);
-            console.log(currentUser.scores);
-            //cycle through other arrays
-            var highScore=-1;
+            var currentUser = req.body; //current user's scores
+            var lowScore=40;
             var friend="";
+
+            //cycle through arrays of other users 
             for (var i=0; i<allUsers.length; i++){
                 var score=0;
+
+                //compare array to arrays of other users
                 for (var j=0; j<10; j++){
-                    // console.log(allUsers[i], allUsers[i].scores[j]);
                     var diff = Math.abs(parseInt(allUsers[i].scores[j])-parseInt(currentUser.scores[j]));
-                    score+=diff; 
+                    score+=diff; //tally of difference between all scores
                 }
-                if (score > highScore){
-                    highScore=score;
+                // console.log("--------score, name------------");
+                // console.log(score, allUsers[i].name);
+                
+                //hold current user in temp var until closer match is found
+                if (score < lowScore){
+                    lowScore=score;
                     friend=allUsers[i];
+                    // console.log("--------low score, friend name------------");
+                    // console.log(lowScore, friend);
                 }
             }
-            console.log("Your friend is: "+friend);
-            // console.log(req);
-
-
-            //compare array to arrays of other users
-                //calculate totalDifference 
-                //hold current user in temp var until closer match is found
-        // }
+            allUsers.push(req.body);
+            res.json(friend);
 
     }); //end post
 };

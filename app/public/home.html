@@ -22,22 +22,4 @@
         <div class="footer"><a href="/api/friends">API Friends List</a> | <a href="https://github.com/KrisBierma/friendFinder">GitHub Repo</a></div>
     </div>
 
-<script type="text/javascript">
-    function runFriendQuery(){
-        var currentURL = window.location.origin;
-
-        $.ajax({ 
-            url: currentURL + "/api/friends", 
-            method: "GET" })
-        .then(function(tableData) {
-            console.log("URL: " + currentURL + "/api/friends");
-            console.log(allUsers);
-
-        });
-    };
-
-    runFriendQuery();
-
-</script>
-
 </body>
