@@ -6,6 +6,9 @@
     <title>Friend Finder Survey</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
     <style>
         p{font-size:22px;}
     </style>
@@ -258,25 +261,58 @@
             
             
             <br><br>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary submit">Submit</button>
         </form>
 
         <a class="btn btn-primary btn-lg" href="/home" role="button">Go to Home Page</a>
 
     </div>
 
-<!-- <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script> -->
-<!-- <script
-    src="https://code.jquery.com/jquery-3.3.1.js"
-    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous"></script> -->
-<!-- <script src="../data/friends.js"></script> -->
 
 <!-- get data from friends.js -->
 <script type="text/javascript">
+
+    $(".submit").on("click", function(event){
+        event.preventDefault();
+
+        var tempScores=[];
+        for (var i=1; i<11; i++){
+            //convert results to array of numbers
+            // currentUser.scores.push($("input[id='q"+i+"']:checked").val()); //3
+            tempScores.push($("input[id='q"+i+"']:checked").val());
+            console.log(tempScores);
+        }
+        // currentUser={name:currentUser.name, photo:currentUser.photo, scores:currentUser.scores};
+        // console.log(tempScores);
+        // currentUser.scores=tempScores;
+        // console.log(currentUser.scores);
+        // console.log(currentUser.scores[0]);
+
+        //new user object with info from from
+        var currentUser={
+            name: $("#name").val().trim(),
+            photo: $("#pic").val().trim(),
+            scores: ["1", "2"]
+        }; 
+
+        console.log(currentUser);
+
+    $.post("/api/friends", currentUser, function(data){
+        console.log(data);
+        console.log("posting to friends");
+    });
+
+    // function compareArrays(){
+        //cycle through other arrays
+        //compare array to arrays of other users
+            //calculate totalDifference 
+            //hold current user in temp var until closer match is found
+    // }
+
+    //display match with least amount of difference - show pic and name
+
+
+
     function runFriendQuery (){
         var currentURL = window.location.origin;
         $.ajax(
@@ -294,6 +330,8 @@
         });
     };
     runFriendQuery();
+
+    });
 </script>
     
 </body>

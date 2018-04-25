@@ -3,6 +3,8 @@
     <title>Friend Finder</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
+
     <style>
         
     </style>
@@ -17,46 +19,24 @@
             <a class="btn btn-primary btn-lg" href="/survey" role="button">Go to Survey</a>
         </div>
 
-        <div class="footer"><a href="#">API Friends List</a> | <a href="https://github.com/KrisBierma/friendFinder">GitHub Repo</a></div>
+        <div class="footer"><a href="/api/friends">API Friends List</a> | <a href="https://github.com/KrisBierma/friendFinder">GitHub Repo</a></div>
     </div>
 
+<script type="text/javascript">
+    function runFriendQuery(){
+        var currentURL = window.location.origin;
 
-<!-- <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script> -->
-<!-- <script src="../data/friends.js"></script> -->
+        $.ajax({ 
+            url: currentURL + "/api/friends", 
+            method: "GET" })
+        .then(function(tableData) {
+            console.log("URL: " + currentURL + "/api/friends");
+            console.log(allUsers);
 
-<script type="textaript">
-    var currentUser={};
+        });
+    };
 
-    $("form").submit(function(event){
-        event.preventDefault();
-        currentUser={}; //starts new array
-        currentUser.name = $("#name");
-        currentUser.photo = $("#pic");
-        for (var i=1; i<11; i++){
-            //convert results to array of numbers
-            currentUser.scores.push($("input[id='q"+i+"']:checked").val());  
-        }
-        console.log(currentUser);
-        <!-- allUsers.push(currentUser); -->
-        <!-- console.log(allUsers); -->
-        <!-- compareArrays(); -->
-    });
-
-    $.post("/api/friends", currentUser, function(data){
-
-    })
-
-    function compareArrays(){
-        //cycle through other arrays
-        //compare array to arrays of other users
-            //calculate totalDifference 
-            //hold current user in temp var until closer match is found
-    }
-
-    //display match with least amount of difference - show pic and name
+    runFriendQuery();
 
 </script>
 
