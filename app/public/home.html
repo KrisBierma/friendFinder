@@ -3,20 +3,30 @@
     <title>Friend Finder</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <script src="https://code.jquery.com/jquery.js"></script>
 
     <style>
-        
+        h1{font-size:150px; font-weight:700;display:inline;}
+        p{font-size:22px; font-weight: 700;display:inline-block !important;}
+        .footer{margin-left:32px;}
+        .footer a{font-size:20px;color:#AB791E;}
+        .jumbotron{background-color:#eebc62;}
+        .btn{background-color:#AB791E; color:white; margin:20px 20px 0 0;}
+        .fas{font-size:32px;}
     </style>
 </head>
 
 <body>
     <div class="container">
         <div class="jumbotron">
-            <h1 class="display-4">Friend Finder</h1>
+            <h1>Friend Finder</h1>
+            <i class="fas fa-user-plus fa"></i>
             <hr class="my-4">
-            <p class="lead">Answer a few basic questions.<br>Then find the friend with the greatest compatibility!</p>
-            <a class="btn btn-primary btn-lg" href="/survey" role="button">Go to Survey</a>
+            <p>Answer a few basic questions. <br>Find the friend with the greatest compatibility!</p>
+
+            <a class="btn btn-lg float-right" href="/survey" role="button">Go to Survey</a>
         </div>
 
         <div class="footer"><a href="/api/friends">API Friends List</a> | <a href="https://github.com/KrisBierma/friendFinder">GitHub Repo</a></div>

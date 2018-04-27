@@ -31,8 +31,8 @@ module.exports = function(app){
                     // console.log(lowScore, friend);
                 }
             }
-            allUsers.push(req.body);
-            res.json(friend);
+            allUsers.push(req.body);//add new info to other users' info array
+            res.json(friend);//send friend match back to survey.html to be displayed
 
     }); //end post
 };
